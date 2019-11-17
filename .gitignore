@@ -1,0 +1,6 @@
+.vscode/*
+.DS_store
+
+credentials.env
+app/monitor/client_secret.json
+app/monitor/credentials.json

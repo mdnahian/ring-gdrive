@@ -1,0 +1,21 @@
+{
+  "name": "ring-gdrive-camera",
+  "version": "1.0.0",
+  "description": "Scripts for ring-gdrive",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint **/*.ts",
+    "build": "rm -rf dist && tsc --declaration",
+    "record": "node ./dist/record.js",
+    "cleanup": "rm -rf dist && rm -rf *.js"
+  },
+  "author": "Md Islam",
+  "license": "ISC",
+  "dependencies": {
+    "ring-client-api": "^5.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.8",
+    "@types/socket.io-client": "^1.4.32"
+  }
+}

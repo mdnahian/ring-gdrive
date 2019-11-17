@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "target":"es2015",
+      "lib": [
+        "es5",
+        "es2015",
+        "es2017",
+        "dom"
+      ],
+      "types": ["node"],
+      "module": "commonjs",
+      "outDir": "./dist",
+      "esModuleInterop": true,
+      "strict": true,
+      "noImplicitAny": false
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }
