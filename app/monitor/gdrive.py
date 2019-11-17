@@ -24,12 +24,14 @@ class GDrive:
             creds = tools.run_flow(flow, store, args)
         self.service = build('drive', 'v3', http=creds.authorize(Http()))
 
-    def upload(self, file):
+    def upload(self, file, folder=None):
         file_name = os.path.basename(file)
         file_metadata = {
-        'name': file_name,
-        'mimeType': '*/*'
+            'name': file_name,
+            'mimeType': '*/*'
         }
+        if folder is not None:
+            file_metadata['parents'] = [folder]
         media = MediaFileUpload(file, mimetype='*/*', resumable=True)
         saved_file = self.service.files().create(body=file_metadata, media_body=media, fields='id').execute()
         logger.info('Uploaded file to Google Drive: %s' % saved_file.get('id'))

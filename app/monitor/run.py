@@ -29,7 +29,7 @@ def main(ring_service, gdrive_service):
                         def upload_recording():
                             try:
                                 recorded_file = ring_service.save_recording(event)
-                                gdrive_service.upload(recorded_file)
+                                gdrive_service.upload(recorded_file, const.GDRIVE_FOLDER_ID)
                                 os.remove(recorded_file)
                             except Exception as e:
                                 logger.error(traceback.format_exc())
@@ -47,5 +47,5 @@ if __name__ == '__main__':
         level=logging.INFO)
     logger = logging.getLogger('ring')
     ring_service = ring.RingDoorbell(const.RING_EMAIL, const.RING_PASS)
-    gdrive_service = None # gdrive.GDrive(const.GDRIVE_CRED_FILE, const.GDRIVE_CLIENT_FILE)
+    gdrive_service = gdrive.GDrive(const.GDRIVE_CRED_FILE, const.GDRIVE_CLIENT_FILE)
     main(ring_service, gdrive_service)

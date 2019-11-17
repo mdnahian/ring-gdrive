@@ -7,7 +7,8 @@ RUN yum -y update && \
     rpm -v --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && \
     rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm && \
     yum -y install ffmpeg ffmpeg-devel && \
-    yum -y install nodejs && \
+    curl -sL https://rpm.nodesource.com/setup_12.x | bash - && \
+    yum -y install nodejs-12.12.0 && \
     mkdir -p /opt/ring/app/camera && \
     mkdir -p /opt/ring/app/monitor && \
     mkdir -p /opt/ring/log && \

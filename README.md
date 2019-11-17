@@ -18,7 +18,10 @@ This project is made possible by:
       * ```bash 
         RING_EMAIL=<email>
         RING_PASS=<password>
+        GDRIVE_FOLDER_ID=<folder_id>
         ```
+        * ```GDRIVE_FOLDER_ID``` (optional) the ID of the folder on Google Drive where the files will be uploaded to. To get the ID, go to Google Drive on the browser, select the folder where the recordings will be uploaded to, and copy the last part of the URL.
+          * i.e. 3rE4Hg5vnPfOSZgjq9IrFGk6FWjrJs4Lf 
       * Add the file to ```./```
 
 ### Build
@@ -28,5 +31,9 @@ docker build -t ring-gdrive .
 
 ### Deploy
 ```bash
-docker run --env-file credentials.env -d ring-gdrive
+docker run --env-file credentials.env -it ring-gdrive
 ```
+
+This will start an interactive terminal. A Google Sign In link will appear. Copy and paste the link on a browser to sign in with your Google account. After allowing the necessary permissions, copy and paste the verification code into the terminal and press enter.
+
+Now exit the terminal by holding down the  ```ctrl``` key and pressing the ```p``` + ```q``` keys.

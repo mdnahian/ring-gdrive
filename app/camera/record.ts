@@ -1,12 +1,14 @@
+import 'dotenv/config'
 import { RingApi } from 'ring-client-api'
 
-async function saveRecording(outputFile) {
-  const ringApi = new RingApi({
-      email: process.env.RING_EMAIL!,
-      password: process.env.RING_PASS!,
+async function saveRecording(outputFile:string) {
+  const { env } = process,
+  ringApi = new RingApi({
+      email: env.RING_EMAIL!,
+      password: env.RING_PASS!,
       debug: true
-    }),
-    [camera] = await ringApi.getCameras()
+  }),
+  [camera] = await ringApi.getCameras()
 
   if (!camera) {
     console.log('No cameras found')
