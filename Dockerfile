@@ -3,7 +3,8 @@ FROM jrottenberg/ffmpeg:4.2-centos
 # update
 RUN yum -y update && \
     yum -y install epel-release && \
-    yum -y install less
+    yum -y install less && \
+    yum -y install tmux 
 
 # create project directories
 RUN mkdir -p /opt/ring/app/lib && \
@@ -14,7 +15,8 @@ RUN mkdir -p /opt/ring/app/lib && \
     
 # install python and pip
 RUN yum -y install python36 python36-devel python36-setuptools && \
-    easy_install-3.6 pip
+    easy_install-3.6 pip && \
+    pip3 install supervisor
     
 # install nodejs
 RUN curl -sL https://rpm.nodesource.com/setup_12.x | bash - && \
@@ -36,4 +38,11 @@ ADD app/monitor /opt/ring/app/monitor
 RUN cd /opt/ring/app/monitor && \
     pip3 install -r requirements.txt
 
-ENTRYPOINT ["python3", "/opt/ring/app/monitor/run.py"]
+# add start script
+ADD app/start.sh /opt/ring/run
+RUN chmod +x /opt/ring/run/start.sh
+
+# add supervisord config
+ADD app/supervisord.conf /opt/ring/run
+
+ENTRYPOINT ["supervisord", "-c", "/opt/ring/run/supervisord.conf"]

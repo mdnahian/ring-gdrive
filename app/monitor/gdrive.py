@@ -23,6 +23,7 @@ class GDrive:
             flow = client.flow_from_clientsecrets(client_file, SCOPES)
             creds = tools.run_flow(flow, store, args)
         self.service = build('drive', 'v3', http=creds.authorize(Http()))
+        logger.info("Connected to Google Drive account")
 
     def upload(self, file, folder=None):
         file_name = os.path.basename(file)

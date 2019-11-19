@@ -31,9 +31,14 @@ docker build -t ring-gdrive .
 
 ### Deploy
 ```bash
-docker run --env-file credentials.env -it ring-gdrive
+docker run --env-file credentials.env -d ring-gdrive
 ```
 
-This will start an interactive terminal. A Google Sign In link will appear. Copy and paste the link on a browser to sign in with your Google account. After allowing the necessary permissions, copy and paste the verification code into the terminal and press enter.
+This will return the container ID. Run the following to start an interactive terminal.
 
-Now exit the terminal by holding down the  ```ctrl``` key and pressing the ```p``` + ```q``` keys.
+```bash
+docker exec -it <container_id> tmux attach
+```
+A Google Sign In link will appear. Copy and paste the link on a browser to sign in with your Google account. After allowing the necessary permissions, copy and paste the verification code into the terminal and press enter.
+
+Now exit the terminal by holding down the  ```ctrl+b``` key and pressing the ```d``` key.
